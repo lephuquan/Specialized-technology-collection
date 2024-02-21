@@ -1,0 +1,19 @@
+Hiểu: 
+    - Trong docker 'image' là một bản sao đóng gói không thể thay đổi của 1 chương trình, có đầy đủ tài nguyên để chạy chương trình nhất định
+    - Container là phiên bản thực thi của 1 image, khi container của image khởi chạy thì nó là phiên bản của image đó
+1. Tạo file java tên là Main và viết lệnh in ra
+2. Mở terminal tại thư mục để chạy 2 lệnh liên tiếp javac Main.java và tiếp đến là java Main
+3. Tạo file docker và viết lệnh
+4. Chạy lệnh 'docker build -t  lephuquan112/docker-helloworld .' để build docker
+5. Chạy lệnh 'docker ps' để hiển thị các container đang chạy 
+6. Chạy lệnh 'docker rm 45' để xóa container có id bắt đầu là 45 với điều kiện container đang dừng
+7. Chạy lệnh 'docker ps -a' hoặc 'docker ps --all' để xam tất cả container đang chạy hoặc dừng
+8. Chạy lệnh 'docker images' để liệt kê tất cả docker images đã tải về hoặc đang có trên máy
+9. Chạy lệnh 'docker image rm 785'với 785 là 3 số đầu của id docker image
+--
+10. Truy cập docker hub, sau đó vào trang repository để tạo kho chứa mới
+11. Tạo kho chứa mới với tên 'docker-helloworld'
+12. ở IDE chạy lệnh 'docker build -t lephuquan/docker-example .' để tạo ra 1 image với phiên bản có tên 'lephuquan/docker-example'
+17. Chạy lệnh 'docker images' để xem image đã được tạo chưa
+18. Chạy lệnh 'docker login' để đăng nhập vào docker hub từ local. Nê đăng nhập ở docker desktop trước để tiện hơn
+19. Chạy lệnh 'docker push lephuquan/docker-example' để đẩy image lên docker hub. Sau khi đẩy xong thì image đã được lưu trên docker hub

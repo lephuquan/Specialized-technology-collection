@@ -1,0 +1,46 @@
+Lỗi
+    1. gọi api từ postman không được, nguyên nhân là thư mục controller đặt bên ngoài
+    2. Trong file appication.yml, tên biến phải cách 1 khoản trống dấu hai chấm
+    3. Khi thay đổi tên thư mục dẫn đến dự án sẽ bị lỗi không nhận được thư viện
+	-> Xóa file .idea, .mvn, target
+	-> mở dự án -> clean -> reload maven file xml -> install -> build -> chạy
+1. tạo dự án spring.io với các thư viện có trong xml
+2. Tạo class User, tạo class Confirmation
+3. Tạo 2 UserRepository,tạo Confirmation repository
+4. Tạo UserService
+5. Tạo UserServiceIpl
+6. Tạo UserResource class
+7. Tạo Http Response class và 2 hàm
+8. Tạo lần lượt 4 file application
+9. Chỉnh sửa cấu hình chạy: thêm 'test'cấu hình Run để chạy application-test
+10. Tạo database có tên 'spcloud' ở postgres database, đặt host là 'localhost'
+11. Chạy Application để tạo bảng
+12. vào postman để sử dụng method post thêm user vào db
+13. Tạo key cho mail: Gmail App Password 48:28 from https://www.youtube.com/watch?v=onCzCxDyR24&t=2625s
+14. Cấu hình email cho 3 file application
+15. Code file emailService
+16. Tại file EmailServiceIplm và triển khai các hàm ở interface -> khai báo variable -> code chức năng "sendSimpleMailMessage"
+17. Chạy và dùng mail thật để tạo tài khoản sau đó sẽ nhận được mail
+18. Tạo pakege utils và class EmailUtils,vieetst chức năng "getEmailMessage" va "getVerificationUrl"
+19. Vào class EmailServiceImpl để dùng EmailUtils.getEmailMessage
+20. Vào db xóa hết dữ liệu để tạo user mới -> test getEmailMessage  / DELETE FROM users where true + DELETE FROM confirmation where true
+21. Dùng postman tạo mới 1 user để nhận mail, Mail của tai khoản được tạo sẽ nhận http://localhost:9000/api/users/?token=2ae06f11-e564-41ef-857d-73ab67ad1cc7
+-- Đã xong gửi mail cơ bản
+22. vào class application thêm annotation '@EnableAsync' nhằm cho phép nhưng phương thức có annotation @Async được thực thi độc lập và không phụ thuộc và các phương thức liên quan tới nó (tăng hiệu suất)
+23. Thêm @Async và tất cả hàm class EmailServiceImpl
+24. Vào db xóa user rồi chạy lại, tạo user để kiểm tra xem nó có nhanh không
+--
+25. Coppy try catch từ hàm 'sendSimpleMailMessage' sang hàm 'sendMineMessageWithAttachments'
+26. Đổi tên kiểu dữ liệu từ 'SimpleMailMessage' sang sang 'MimeMessage'
+27. Dựng hàm 'MimeMessages'
+28. Ở hàm 'sendMineMessageWithAttachments' thêm đối tượng 'MimeMessageHelper'
+29. Xử lý tạo biến "MimeMessageHelper helper = new MimeMessageHelper(message, true, UTF_8_ENCODING") ->bôi đen "UTF-8" -> refactor -> introduce Instance -> đă lại tên biến tạo đó
+30. Thay đổi hàm sendMineMessageWithAttachments với thuộc tính helpper
+31. Ở class UserServiceImpl, triển khai hàm 'emaiService.sendMineMessageWithAttachments' vàn đóng hàm 'sendSimpleMailMessage'
+--
+32. Dựng hàm, xử lý hàm sendMineMessageWithEmbeddedFiles tạo user để kiển tra tương tự
+--
+33. Vào trang 'https://bootdey.com/snippets/view/bs4-Email-alert' để chọn template thông báo mail
+34. Ở mục template của dự án tạo file 'emailtemplate.html', bỏ mẫu html lấy được bỏ vào
+35. Viết hàm 'sendHtmlEmail', triển khai ở EmailServiceImpl -> xóa db -> tạo user
+
