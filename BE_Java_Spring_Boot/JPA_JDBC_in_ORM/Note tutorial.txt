@@ -1,0 +1,2 @@
+1. Tạo entity
+2. Tạo repository
