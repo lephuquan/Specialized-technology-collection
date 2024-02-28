@@ -1,2 +1,18 @@
-1. Tạo entity
-2. Tạo repository
+Improve
+1. dùng @RequestBody:
+	- dữ liệu phức tạp,dữ liệu nhận về nhiều và có kiểu dữ liệu là object nên formdata kh		phù hợp
+	
+2. dùng form data
+	- Dùng @ModelAttribute thay cho @RequestBody nếu sẽ dễ lỗi Content type 'multipart/form-data;boundary=----...;charset=UTF-8' not supported 
+	
+3. dùng class 'HttpResponse' để response tường minh, dễ hiểu
+4. Dùng strem.map thay cho 'for' để chuyển dto sang entity(add, update). 
+	- Trường hợp add 1 order thì cần add list orderDetail, trong list orderDetail cần add book tương ứng cho mỗi orderDetail. Lúc này dùng for để add book tương ứng vào orderDetail list sau đó dùng for để đưa tất cả orderDetail vào 1 list để gửi về database.
+5. Dùng dto để gửi/nhận dữ liệu khi cần dùng hết thuộc tính của đối tượng, còn không thì nên tạo entity response/request để: không lộ nhiều thông tin, cung cấp thừa thông tin, tốn thời gian lấy dữ liệu
+6. Có thể trả về response bằng ResponseEntity.ok(object) hoặc HttpResponse tự định nghĩa
+7. Khi nào nên dùng pathVariable/requestParam
+	- khi tham số gửi về có hoặc không đều được, linh hoạt: requestParam
+	- Url dễ đọc, dễ hiểu: requestParam
+
+databse đang sai: order có nhiều book, bảng hiện tại: book chưa orderId hay ngược lại, có cần bảng orderDetail -> cần bảng orderDetail vì nếu không kết nối được 1 đơn hàng với nhiều book,  
+1 orderDetail chứa orderId và bookId(order1-book1, order1-book2..)

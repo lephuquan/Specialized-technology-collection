@@ -1,0 +1,8 @@
+curl --location 'http://localhost:9000/api/users' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "name": "Le Phu Quan v2",
+    "email": "lephuquan1234@gmail.com",
+    "password": "123456",
+    "enabled": true
+}'

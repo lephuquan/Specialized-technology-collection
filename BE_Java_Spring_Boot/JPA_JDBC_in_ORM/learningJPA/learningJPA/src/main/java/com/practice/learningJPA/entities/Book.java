@@ -21,16 +21,15 @@ public class Book {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "productName")
+    @Column(name = "title")
     private String title;
 
+    @OneToMany(mappedBy = "book",cascade = CascadeType.ALL)
+    private List<OrderDetail> orderDetailList;
+
     @ManyToOne
-    @JoinColumn(name = "order_id", referencedColumnName = "id")
-    private Order order;
-
-    @OneToMany(mappedBy = "book", cascade = CascadeType.ALL)
-    private List<OrderDetail> orderDetails;
-
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private Category category;
 
     @ManyToMany
     @JoinTable(
@@ -39,6 +38,5 @@ public class Book {
             inverseJoinColumns = @JoinColumn(name = "author_id")
     )
     private List<Author> authorList;
-
 
 }
