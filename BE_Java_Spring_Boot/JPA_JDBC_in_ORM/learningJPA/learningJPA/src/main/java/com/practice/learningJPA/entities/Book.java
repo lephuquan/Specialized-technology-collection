@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 
 import java.util.List;
 
@@ -15,6 +17,8 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "Book")
+@DynamicUpdate// lưu những thuộc tính có thay đổi -> cải thiện năng suất lưu
+@DynamicInsert// Cai thiện năng suất lưu bằng cách không insert trường trống
 public class Book {
 
     @Id

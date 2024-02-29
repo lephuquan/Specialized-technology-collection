@@ -1,6 +1,7 @@
 package com.practice.learningJPA.controller;
 
 import com.practice.learningJPA.payloads.requests.GetBookListRequest;
+import com.practice.learningJPA.payloads.requests.UpdateBookRequest;
 import com.practice.learningJPA.payloads.responses.GetBookListResponse;
 import com.practice.learningJPA.payloads.responses.HttpResponse;
 import com.practice.learningJPA.services.book.BookDto;
@@ -8,10 +9,7 @@ import com.practice.learningJPA.services.book.IBookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.function.EntityResponse;
 
 import java.net.URI;
@@ -26,7 +24,7 @@ public class BookController {
     private final IBookService bookService;
 
     @GetMapping("getAll")
-    public ResponseEntity<HttpResponse> getAllBook(GetBookListRequest getBookListRequest){// Không dùng @Requestbody
+    public ResponseEntity<HttpResponse> getAllBook(GetBookListRequest getBookListRequest){// Không cần dùng @Requestbody
 
         GetBookListResponse getBookListResponse = bookService.getBookList(getBookListRequest);
 
@@ -51,6 +49,22 @@ public class BookController {
                         .timeStamp(LocalDateTime.now().toString())
                         .data(Map.of("bookDto", bookDto))
                         .message("Get book success")
+                        .status(HttpStatus.OK)
+                        .statusCode(HttpStatus.OK.value())
+                        .build()
+        );
+    }
+
+    @PutMapping("update")
+    public ResponseEntity<HttpResponse> UpdateBook(@RequestBody UpdateBookRequest book){
+
+        bookService.updateBook(book);
+
+        return ResponseEntity.ok().body(
+                HttpResponse.builder()
+                        .timeStamp(LocalDateTime.now().toString())
+                        .data(Map.of("Update", book))
+                        .message("Update book success")
                         .status(HttpStatus.OK)
                         .statusCode(HttpStatus.OK.value())
                         .build()

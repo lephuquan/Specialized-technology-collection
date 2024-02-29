@@ -1,0 +1,24 @@
+1. Vào dockerfile để cấu hình môi trường chạy cho docker
+1.1 Tạo image docker 'docker build -t lephuquan/docker-springboot:v1 .' -> có thể bỏ ':v1' -> sau dấu hai chấm là tên version của image
+2. Mở terminal chạy lệnh 'docker images' để xem các images đang tồn tại
+3. Chạy lệnh 'docker run -p 9090:8080 3f7'. 'docker run' sẽ chạy container từ của image. Lệnh '-p 9090:8080' để chuyển các request từ 9090(cổng docker) sang 8080(cổng container)
+    -> Khi run chương trình chú  đên cấu hình database và lỗi deploy docker (chạy application được nhưng chạy docker thì chưa chắc)
+4. Chạy lệnh 'docker ps' để kiểm tra container có đang chạy, trạng thái chạy và dừng ở cột STATUS
+5. Chạy lệnh 'docker start 31d' để chạy container có id bắt đầu bằng '31d'
+6. Chạy lệnh 'docker ps' để kiểm tra STATUS đã chạy chưa
+7. Chạy lệnh 'docker logs -f 31d' hoặc  để xem container có đầu id là '31d' chạy
+8. Chạy lệnh 'docker ps' để xem docker có đang chạy
+9. Chạy lệnh 'docker stop 31d' để dừng container chạy
+10. Chạy lệh 'docker rm 31d' để xỏa container
+11. Chạy lệnh 'docker images 31d' để kiểm tra đã tắt chưa
+---
+Docker compose
+12. Trong dự án spring boot tạo file 'docker-compose.yml'
+13. Chạy lệnh 'docker -v' để xem phiên bản của docker
+14. Trong file 'docker-compose'thêm vào version tương ứng ở dòng đầu tiên
+15. Cấu hình docker compose
+16. Chạy lệnh 'docker images' để xem image
+17. Chạy lệnh 'docker-compose up' để chạy ứng dụng trên docker
+18. Chạy lệnh 'docker images' để xem các image đang có
+19. Lưu ý: Hiện tại ứng dụng này là 1 image mà docker compose hiện tại có 2 container là 'java app' và 'mysql'
+20. Chạy lệnh 'docker ps' để xem 2 container của image đã chạy chưa

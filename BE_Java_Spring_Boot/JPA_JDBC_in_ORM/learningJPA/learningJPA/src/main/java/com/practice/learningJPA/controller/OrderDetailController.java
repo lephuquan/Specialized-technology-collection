@@ -22,7 +22,11 @@ public class OrderDetailController {
     private final IOrderDetailService orderDetailService;// Lứu ý final
 
     @GetMapping(path = "/search")// Nhận tham số dưới dạng: ?bookName=keyword1&orderId=keyword2
-    public ResponseEntity<HttpResponse> getOrderDetailByBookNameAndOrderId(@RequestParam("bookName") String bookName, @RequestParam("orderId") Long orderId){
-        return orderDetailService.getOrderDetailByBookNameAndOrderId(bookName, orderId);
+    public ResponseEntity<?> getOrderDetailByBookNameAndOrderId(@RequestParam("bookName") String bookName, @RequestParam("orderId") Long orderId){
+//        return orderDetailService.getOrderDetailByBookNameAndOrderId(bookName, orderId);
+        return orderDetailService.getOrderDetailByBookNameAndOrderIdCase2(bookName, orderId); // case1
+//        return orderDetailService.getOrderDetailByBookNameAndOrderIdCase3(bookName, orderId);//  case2
     }
+
+
 }

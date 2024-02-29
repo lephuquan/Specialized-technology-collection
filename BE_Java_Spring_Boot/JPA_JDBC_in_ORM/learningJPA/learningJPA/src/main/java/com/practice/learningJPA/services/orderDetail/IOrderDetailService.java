@@ -24,5 +24,7 @@ import java.util.stream.Collectors;
 
 public interface IOrderDetailService {
 
-    ResponseEntity<HttpResponse> getOrderDetailByBookNameAndOrderId(String bookName, Long orderId);
+    ResponseEntity<?> getOrderDetailByBookNameAndOrderId(String bookName, Long orderId);
+    ResponseEntity<?> getOrderDetailByBookNameAndOrderIdCase2(String bookName, Long orderId);
+//    ResponseEntity<?> getOrderDetailByBookNameAndOrderIdCase3(String bookName, Long orderId);
 }

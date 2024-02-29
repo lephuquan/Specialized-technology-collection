@@ -1,5 +1,7 @@
 package com.practice.learningJPA.services.orderDetail;
 
+import com.practice.learningJPA.entities.Book;
+import com.practice.learningJPA.entities.Order;
 import com.practice.learningJPA.services.book.BookDto;
 import com.practice.learningJPA.services.order.OrderDto;
 import lombok.AllArgsConstructor;

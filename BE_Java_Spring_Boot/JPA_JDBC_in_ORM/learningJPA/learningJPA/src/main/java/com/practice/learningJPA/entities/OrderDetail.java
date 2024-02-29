@@ -1,6 +1,7 @@
 package com.practice.learningJPA.entities;
 
 
+import com.practice.learningJPA.services.orderDetail.GetOrderDetailRecord;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,4 +30,5 @@ public class OrderDetail {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "book_id", referencedColumnName = "id")
     private Book book;
+
 }
