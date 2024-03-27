@@ -53,7 +53,7 @@ public class OrderDetailImpl implements IOrderDetailService{
     }
 
     @Override
-    public ResponseEntity<BookDto> getOrderDetailByBookNameAndOrderIdCase2(String bookName, Long orderId) {// Tìm nạp phép chiếu Proxy interface
+    public ResponseEntity<OrderDetailDto> getOrderDetailByBookNameAndOrderIdCase2(String bookName, Long orderId) {// Tìm nạp phép chiếu Proxy interface
 
         ModelMapper modelMapper = new ModelMapper();
 
@@ -74,7 +74,7 @@ public class OrderDetailImpl implements IOrderDetailService{
         orderDetailDto.setBookDto(bookDto);
         orderDetailDto.setOrderDto(orderDto);
 
-        return ResponseEntity.ok(bookDto) ;
+        return ResponseEntity.ok(orderDetailDto) ;
     }
 
 //    @Override

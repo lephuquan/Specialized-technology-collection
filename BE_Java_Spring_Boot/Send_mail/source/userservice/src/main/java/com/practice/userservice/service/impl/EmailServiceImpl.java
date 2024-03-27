@@ -178,7 +178,7 @@ public class EmailServiceImpl implements EmaiService {
 
             //Add images to the email body
             BodyPart imageBodyPart = new MimeBodyPart();
-            DataSource dataSource = new FileDataSource("E:/Main/Specialized_Technology_Collection/BE_Java_Spring_Boot/Send_mail/source_files/phone_image.jpg");
+            DataSource dataSource = new FileDataSource("D:/Personalized/Specialized-technology-collection/BE_Java_Spring_Boot/Send_mail/source_files/phone_image.jpg");
             imageBodyPart.setDataHandler(new DataHandler(dataSource));
             imageBodyPart.setHeader("Content-ID", "image");
             mimeMultipart.addBodyPart(imageBodyPart);

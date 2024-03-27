@@ -1,4 +1,4 @@
-package com.practice.learningJPA.controller;
+package com.practice.learningJPA.exceptions;
 
 import com.practice.learningJPA.payloads.responses.ResponseMessage;
 import org.springframework.web.multipart.MaxUploadSizeExceededException;

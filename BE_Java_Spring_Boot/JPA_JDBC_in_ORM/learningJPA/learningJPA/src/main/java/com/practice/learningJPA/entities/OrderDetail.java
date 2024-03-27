@@ -16,7 +16,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "order_detail")
-@NamedQuery(name="OrderDetail.findByBookNameAndOrderId", query="SELECT o FROM OrderDetail o where o.book.title = :bookName and o.order.id = :authorId") // JPQL and @NamedQuery
+@NamedQuery(name="OrderDetail.findByBookNameAndOrderId", query="SELECT o FROM OrderDetail o where o.book.title = :bookName and o.order.id = :orderId") // JPQL and @NamedQuery
 public class OrderDetail {
 
     @Id

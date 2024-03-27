@@ -17,14 +17,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 
-@RestController("/file")
+@RestController
+@RequestMapping("/api/file")
 public class FilesController {
 
     @Autowired
     FilesStorageService storageService;
 
-    @PostMapping("/upload")
-    public ResponseEntity<ResponseMessage> uploadFile(@RequestParam("file") MultipartFile file) {
+
+    @PostMapping(path = "/upload")
+    public ResponseEntity<ResponseMessage> uploadFile(@RequestParam(required = false, value = "file") MultipartFile file) {
         String message = "";
         try {
             storageService.save(file);
