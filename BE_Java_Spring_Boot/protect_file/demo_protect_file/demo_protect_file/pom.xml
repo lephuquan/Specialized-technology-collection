@@ -42,32 +42,40 @@
 			<artifactId>pdfbox</artifactId>
 			<version>2.0.24</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/commons-io/commons-io -->
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.15.1</version>
+		</dependency>
+
 		<!--	====================PDF==================== -->
 
-
-
-
-
-
-
-		<!--	====================resolve==================== -->
+		<!--	====================WORD==================== -->
 		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi</artifactId>
-			<version>5.2.5</version>
+			<groupId>com.aspose</groupId>
+			<artifactId>aspose-words</artifactId>
+			<version>18.10</version>
+			<classifier>jdk16</classifier>
 		</dependency>
 		<dependency>
-			<groupId>org.apache.poi</groupId>
-			<artifactId>poi-ooxml</artifactId>
-			<version>5.2.5</version>
+			<groupId>com.aspose</groupId>
+			<artifactId>aspose-words</artifactId>
+			<version>18.10</version>
+			<classifier>javadoc</classifier>
 		</dependency>
-		<!--	====================resolve==================== -->
+		<!--	====================WORD==================== -->
+
+		<!--	===================EXEL==================== -->
+		<!-- https://mvnrepository.com/artifact/com.aspose/aspose-cells -->
+		<dependency>
+			<groupId>com.aspose</groupId>
+			<artifactId>aspose-cells</artifactId>
+			<version>24.3</version>
+		</dependency>
 
 
-
-
-
-
+		<!--	===================EXEL==================== -->
 
 	</dependencies>
 
@@ -112,5 +120,13 @@
 			</plugin>
 		</plugins>
 	</build>
+
+	<repositories>
+		<repository>
+			<id>AsposeJavaAPI</id>
+			<name>Aspose Java API</name>
+			<url>https://artifact.aspose.com/repo/</url>
+		</repository>
+	</repositories>
 
 </project>

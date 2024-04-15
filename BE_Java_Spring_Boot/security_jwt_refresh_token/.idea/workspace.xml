@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="9243dc7e-b411-41c8-b2ab-f0a61235ad49" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/../protect_file/demo_protect_file/demo_protect_file/src/main/java/com/personalize/demo_protect_file/controller/FileExelController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../file-demo.zip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../protect_file/demo_protect_file/demo_protect_file/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../protect_file/demo_protect_file/demo_protect_file/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../protect_file/demo_protect_file/demo_protect_file/src/main/java/com/personalize/demo_protect_file/DemoProtectFileApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/../protect_file/demo_protect_file/demo_protect_file/src/main/java/com/personalize/demo_protect_file/DemoProtectFileApplication.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../protect_file/demo_protect_file/demo_protect_file/src/main/java/com/personalize/demo_protect_file/controller/FileWordController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../protect_file/demo_protect_file/demo_protect_file/src/main/java/com/personalize/demo_protect_file/controller/FileWordController.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 1
+}]]></component>
+  <component name="ProjectId" id="2ewizTDBTrLHKMF4gcQMvGgV26N" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "kotlin-language-version-configured": "true",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="9243dc7e-b411-41c8-b2ab-f0a61235ad49" name="Changes" comment="" />
+      <created>1712822303830</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1712822303830</updated>
+      <workItem from="1712822304958" duration="6000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
