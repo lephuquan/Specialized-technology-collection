@@ -1,0 +1,82 @@
+{
+	"info": {
+		"_postman_id": "02419f14-2e37-49d8-a938-de0f1a0de806",
+		"name": "Save file to folder",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "14192420"
+	},
+	"item": [
+		{
+			"name": "create user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "staffName",
+							"value": "qwe34234232432423",
+							"type": "text"
+						},
+						{
+							"key": "relatedFiles",
+							"type": "file",
+							"src": "/D:/PC_folder/Download/Videos/GH39yRmQIlhGdNoZAKRjsMw4lztqbmdjAAAF.mp4"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/public/create-user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"public",
+						"create-user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "staffName",
+							"value": "qwe34234232432423",
+							"type": "text"
+						},
+						{
+							"key": "relatedFiles",
+							"type": "file",
+							"src": "/D:/PC_folder/Download/Videos/GH39yRmQIlhGdNoZAKRjsMw4lztqbmdjAAAF.mp4"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8080/api/public/create-user",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"api",
+						"public",
+						"create-user"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
