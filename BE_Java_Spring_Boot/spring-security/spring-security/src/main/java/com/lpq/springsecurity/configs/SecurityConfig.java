@@ -22,6 +22,9 @@ import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
 import com.fasterxml.jackson.databind.ObjectMapper;
+
+import javax.servlet.http.HttpServletResponse;
+
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
@@ -60,9 +63,12 @@ public class SecurityConfig {
 
         http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class)
                 .logout()
-                .logoutUrl("/api/public/logout")
-                .addLogoutHandler(logoutHandler)
-                .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext());
+                .logoutUrl("/api/public/logout") // catch logout request
+                .addLogoutHandler(logoutHandler) // after process logout
+                .logoutSuccessHandler((request, response, authentication) -> {
+                    SecurityContextHolder.clearContext();
+                    response.setStatus(HttpServletResponse.SC_OK);
+                });
 
         return http.build();
     }

@@ -20,7 +20,7 @@ public class LogoutService implements LogoutHandler {
 
 
     @Override
-    public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {
+    public void logout(HttpServletRequest request, HttpServletResponse response, Authentication authentication) {//  Spring Security không cung cấp thông tin xác thực (authentication) trong quá trình logout, do đó bạn nhận được giá trị null.
 
         final String authHeader = request.getHeader("Authorization");
 
