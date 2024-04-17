@@ -1,7 +1,7 @@
-package com.ldcc.evsis.cms.services.user;
+package com.lpq.springsecurity.services.user;
 
 
-import com.ldcc.evsis.cms.entities.Users;
+import com.lpq.springsecurity.entities.Users;
 import lombok.Getter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

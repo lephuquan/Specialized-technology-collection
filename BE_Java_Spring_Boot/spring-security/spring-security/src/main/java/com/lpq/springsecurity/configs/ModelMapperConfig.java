@@ -1,4 +1,4 @@
-package com.ldcc.esg.api.configs;
+package com.lpq.springsecurity.configs;
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;
@@ -12,7 +12,6 @@ public class ModelMapperConfig {
         ModelMapper modelMapper = new ModelMapper();
         modelMapper.getConfiguration()
                 .setMatchingStrategy(MatchingStrategies.STANDARD);
-        //modelMapper.addConverter(new JobTypeConverter());
         return modelMapper;
     }
 }

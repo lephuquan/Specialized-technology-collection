@@ -1,4 +1,4 @@
-package com.ldcc.esg.api.entities.enums;
+package com.lpq.springsecurity.entities.enums;
 
 public enum AccountStatus {
     IN_ACTIVE,

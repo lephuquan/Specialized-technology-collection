@@ -1,15 +1,17 @@
-package com.ldcc.evsis.cms.configs;
+package com.lpq.springsecurity.configs;
+
+
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.ldcc.evsis.cms.commons.LogoutTest;
-import com.ldcc.evsis.cms.services.auth.LogoutService;
-import com.ldcc.evsis.cms.services.jwt.JwtTokenFilter;
-import com.ldcc.evsis.cms.services.user.UserDetailsServiceImpl;
+import com.lpq.springsecurity.services.jwt.JwtTokenFilter;
+import com.lpq.springsecurity.services.user.UserDetailsServiceImpl;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
+import org.springframework.security.config.annotation.method.configuration.EnableMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
@@ -20,23 +22,24 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 @Configuration
 @EnableWebSecurity
-public class ApplicationSecurityConfig {
+@EnableMethodSecurity
+public class SecurityConfig {
 
-    private final UserDetailsServiceImpl customUserDetailService;
+    @Autowired
+    private UserDetailsServiceImpl customUserDetailService;
 
-    private final ObjectMapper objectMapper;
 
-    private  LogoutService logoutService;
+    @Autowired
+    private LogoutHandler logoutHandler;
 
-    public ApplicationSecurityConfig(
-            UserDetailsServiceImpl customUserDetailService,
-            ObjectMapper objectMapper, LogoutHandler logoutHandler) {
+    public SecurityConfig(
+            UserDetailsServiceImpl customUserDetailService, LogoutHandler logoutHandler) {
         this.customUserDetailService = customUserDetailService;
-        this.objectMapper = objectMapper;
-        this.logoutService= (LogoutService) logoutHandler;
+        this.logoutHandler = logoutHandler;
     }
 
     @Bean
@@ -52,23 +55,52 @@ public class ApplicationSecurityConfig {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeRequests()
-                .antMatchers("/api/public/**").permitAll()
-                .antMatchers("/api/management/**").hasAnyAuthority("SUPER_ADMIN")
-                .anyRequest().authenticated()
-                .and().cors()
-                .and().exceptionHandling().authenticationEntryPoint(new CustomAuthenticationEntryPoint(objectMapper))
-                .and().sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-        http.authenticationProvider(authenticationProvider());
-
-        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class)
-                .logout()
-                .logoutUrl("/api/public/logout")
-                .addLogoutHandler(logoutService)
-                .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext());
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/api/public/**").permitAll()
+                        .requestMatchers("/api/user/**").hasAnyAuthority("USER")
+                        .requestMatchers("/api/admin/**").hasAnyAuthority("ADMIN")
+                        .requestMatchers("/api/public-account/**").hasAnyAuthority("USER", "ADMIN")
+                        .anyRequest().authenticated()
+                )
+                .authenticationProvider(authenticationProvider())
+                .addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class)
+                .logout(logout -> logout
+                        .invalidateHttpSession(true)
+                        .clearAuthentication(true)
+                        .logoutRequestMatcher(new AntPathRequestMatcher("/api/public/logout"))
+                        .addLogoutHandler(logoutHandler)
+                        .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
+                );
 
         return http.build();
     }
+
+//FOR SECURITY LESS THAN 6.0
+//    @Bean
+//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+//        http.csrf(AbstractHttpConfigurer::disable)
+//                .authorizeRequests()
+//                .antMatchers("/api/public/**", "/swagger-ui.html", "/v2/api-docs", "/webjars/**", "/swagger-resources/**").permitAll()
+//                .antMatchers("/api/management/**").hasAnyAuthority("SUPER_ADMIN")
+//                .antMatchers("/api/admin/**").hasAnyAuthority("ADMIN","SUPER_ADMIN")
+//                .anyRequest().authenticated()
+//                .and().cors()
+//                .and().exceptionHandling().authenticationEntryPoint(new CustomAuthenticationEntryPoint(objectMapper))
+//                .and().sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+//        http.authenticationProvider(authenticationProvider());
+//        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
+//        http.logout(
+//                logout -> {
+//                    logout.invalidateHttpSession(true)
+//                            .clearAuthentication(true)
+//                            .logoutRequestMatcher(new AntPathRequestMatcher("/api/public/logout"))
+//                            .addLogoutHandler(logoutHandler)
+//                            .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext());
+//                }
+//        );
+//
+//        return http.build();
+//    }
 
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {

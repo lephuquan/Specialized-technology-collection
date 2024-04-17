@@ -1,9 +1,9 @@
-package com.ldcc.evsis.cms.entities;
+package com.lpq.springsecurity.entities;
 
-import com.ldcc.evsis.cms.entities.enums.TokenType;
+import com.lpq.springsecurity.entities.enums.TokenType;
+import jakarta.persistence.*;
 import lombok.Data;
 
-import javax.persistence.*;
 
 @Data
 @Entity

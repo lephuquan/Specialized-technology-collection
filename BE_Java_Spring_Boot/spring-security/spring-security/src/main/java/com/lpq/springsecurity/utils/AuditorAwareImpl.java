@@ -1,4 +1,4 @@
-package com.ldcc.evsis.cms.utils;
+package com.lpq.springsecurity.utils;
 
 import org.springframework.data.domain.AuditorAware;
 

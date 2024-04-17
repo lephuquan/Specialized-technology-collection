@@ -1,10 +1,10 @@
-package com.ldcc.evsis.cms.repositories;
+package com.lpq.springsecurity.repositories;
 
-import com.ldcc.evsis.cms.entities.Token;
+import com.lpq.springsecurity.entities.Token;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Repository

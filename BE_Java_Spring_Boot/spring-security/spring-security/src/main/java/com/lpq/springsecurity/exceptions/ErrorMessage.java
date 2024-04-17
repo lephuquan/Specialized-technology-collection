@@ -1,4 +1,4 @@
-package com.ldcc.esg.api.exceptions;
+package com.lpq.springsecurity.exceptions;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Builder;

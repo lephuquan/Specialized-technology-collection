@@ -1,4 +1,4 @@
-package com.ldcc.evsis.cms.configs;
+package com.lpq.springsecurity.configs;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -14,11 +14,7 @@ public class CorsConfig {
             @Override
             public void addCorsMappings(CorsRegistry registry) {
                 registry.addMapping("/**")
-                        .allowedOrigins("http://localhost:3000",
-                                "http://3.1.254.29:5000",
-                                "https://evsis-admindev.lotte.vn",
-                                "http://3.1.254.29:4000",
-                                "https://evsis-dev.lotte.vn/")
+                        .allowedOrigins("http://localhost:3000")
                         .allowCredentials(true)
                         .allowedHeaders("*", "Access-Control-Expose-Headers")
                         .allowedMethods("*");

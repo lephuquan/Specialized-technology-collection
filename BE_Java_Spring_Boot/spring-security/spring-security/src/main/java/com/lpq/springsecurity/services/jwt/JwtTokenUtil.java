@@ -1,7 +1,7 @@
 package com.lpq.springsecurity.services.jwt;
 
-import com.ldcc.evsis.cms.repositories.ITokenRepository;
-import com.ldcc.evsis.cms.services.user.UserDetailsImpl;
+import com.lpq.springsecurity.repositories.ITokenRepository;
+import com.lpq.springsecurity.services.user.UserDetailsImpl;
 import io.jsonwebtoken.*;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
@@ -25,7 +25,7 @@ public class JwtTokenUtil {
     @Autowired
     private ITokenRepository tokenRepository;
 
-    @Value("${app.jwt.secret}")
+    @Value("${app.jwt.secret}") // error if do not have value
     private String SECRET_KEY;
 
     public String generateAccessToken(Authentication authentication) {

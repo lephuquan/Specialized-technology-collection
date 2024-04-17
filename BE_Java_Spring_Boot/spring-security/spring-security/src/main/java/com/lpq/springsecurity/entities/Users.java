@@ -1,10 +1,11 @@
-package com.ldcc.evsis.cms.entities;
+package com.lpq.springsecurity.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
+import com.lpq.springsecurity.entities.enums.AccountStatus;
+import jakarta.persistence.*;
 import lombok.Data;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -31,11 +32,9 @@ public class Users extends Auditable<String> {
     @Column(name = "full_name")
     private String fullName = null;
 
-    @Column(name = "account_expired")
-    private Boolean accountExpired = Boolean.FALSE;
-
-    @Column(name = "account_locked")
-    private Boolean accountLocked = Boolean.FALSE;
+    @Column(name = "status")
+    @Enumerated(EnumType.STRING)
+    private AccountStatus status;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(
@@ -46,16 +45,19 @@ public class Users extends Auditable<String> {
     @JsonManagedReference
     private Set<Roles> roles = new HashSet<>();
 
-    @Column(name = "reset_password_token", length = 100)
-    private String resetPasswordToken;
-
-    @Column(name = "reset_password_token_expired")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date resetPasswordTokenExpired;
-
     @OneToMany(mappedBy = "users", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Set<Token> tokens;
 
     @Column(name = "first_login")
     private Boolean firstLogin = Boolean.TRUE;
+
+//    @Column(name = "reset_password_token", length = 100)
+//    private String resetPasswordToken;
+
+//    @Column(name = "account_expired")
+//    private Boolean accountExpired = Boolean.FALSE;
+
+//    @Column(name = "reset_password_token_expired")
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date resetPasswordTokenExpired;
 }

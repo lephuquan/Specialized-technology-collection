@@ -1,10 +1,13 @@
-package com.ldcc.evsis.cms.entities;
+package com.lpq.springsecurity.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.ldcc.evsis.cms.entities.enums.ERole;
-import lombok.*;
+import com.lpq.springsecurity.entities.enums.ERole;
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import javax.persistence.*;
 import java.util.Set;
 
 @Getter

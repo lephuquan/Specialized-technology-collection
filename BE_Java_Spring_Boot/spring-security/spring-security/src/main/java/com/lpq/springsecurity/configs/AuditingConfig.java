@@ -1,6 +1,6 @@
-package com.ldcc.evsis.cms.configs;
+package com.lpq.springsecurity.configs;
 
-import com.ldcc.evsis.cms.utils.AuditorAwareImpl;
+import com.lpq.springsecurity.utils.AuditorAwareImpl;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.AuditorAware;
