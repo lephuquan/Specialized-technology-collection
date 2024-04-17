@@ -1,10 +1,11 @@
 package com.lpq.springsecurity.repositories;
 
 import com.lpq.springsecurity.entities.Token;
-import jakarta.transaction.Transactional;
+import com.lpq.springsecurity.entities.Users;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import javax.transaction.Transactional;
 import java.util.Optional;
 
 @Repository
@@ -13,4 +14,7 @@ public interface ITokenRepository extends JpaRepository<Token, Integer> {
 
     @Transactional
     void deleteByToken(String token);
+
+    @Transactional
+    void deleteByUsers(Users users);
 }

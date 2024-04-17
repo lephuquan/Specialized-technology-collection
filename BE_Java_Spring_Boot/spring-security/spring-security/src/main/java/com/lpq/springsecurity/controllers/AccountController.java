@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(path = "/api/public")
+@RequestMapping(path = "/api/public")// should be '/api/admin' cause only admin can create account
 @Validated
 @RequiredArgsConstructor
 public class AccountController {

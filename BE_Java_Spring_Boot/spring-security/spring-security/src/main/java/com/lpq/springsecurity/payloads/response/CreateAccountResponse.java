@@ -4,11 +4,13 @@ import com.lpq.springsecurity.entities.Roles;
 import com.lpq.springsecurity.entities.Token;
 import com.lpq.springsecurity.entities.enums.AccountStatus;
 import com.lpq.springsecurity.entities.enums.ERole;
+import lombok.Data;
 
 import java.util.HashSet;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+@Data
 public class CreateAccountResponse {
 
     private Long userId;
@@ -19,13 +21,13 @@ public class CreateAccountResponse {
 
     private String password;
 
-    private String fullName = null;
+    private String fullName;
 
     private AccountStatus status;
 
     private Set<Token> tokens;
 
-    private Boolean firstLogin = Boolean.TRUE;
+    private Boolean firstLogin;
 
     private Set<ERole> roles = new HashSet<>();
 

@@ -2,10 +2,11 @@ package com.lpq.springsecurity.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.lpq.springsecurity.entities.enums.AccountStatus;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;

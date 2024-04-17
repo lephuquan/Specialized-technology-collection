@@ -1,7 +1,7 @@
 package com.lpq.springsecurity.entities;
 
 import com.lpq.springsecurity.entities.enums.TokenType;
-import jakarta.persistence.*;
+import javax.persistence.*;
 import lombok.Data;
 
 

@@ -2,10 +2,9 @@ package com.lpq.springsecurity.configs;
 
 
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.lpq.springsecurity.services.jwt.JwtTokenFilter;
 import com.lpq.springsecurity.services.user.UserDetailsServiceImpl;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,25 +21,18 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.authentication.logout.LogoutHandler;
-import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
+import com.fasterxml.jackson.databind.ObjectMapper;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
+@RequiredArgsConstructor
 public class SecurityConfig {
 
-    @Autowired
-    private UserDetailsServiceImpl customUserDetailService;
+    private final UserDetailsServiceImpl customUserDetailService; // Use final to enforce initialization in constructor
 
+    private final ObjectMapper objectMapper;
 
-    @Autowired
-    private LogoutHandler logoutHandler;
-
-    public SecurityConfig(
-            UserDetailsServiceImpl customUserDetailService, LogoutHandler logoutHandler) {
-        this.customUserDetailService = customUserDetailService;
-        this.logoutHandler = logoutHandler;
-    }
+    private final LogoutHandler logoutHandler;
 
     @Bean
     public JwtTokenFilter jwtTokenFilter() {
@@ -54,57 +46,22 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable)// vô hiệu hóa tính năng bảo vệ CSRF trong cấu hình bảo mật HTTP. CSRF
-                .authorizeHttpRequests(auth -> auth //ủy quyền cho các yêu cầu HTTP đến.
-                        .requestMatchers("/api/public/**").permitAll()
-//                        .requestMatchers("/api/user/**").hasAnyAuthority("USER")
-//                        .requestMatchers("/api/admin/**").hasAnyAuthority("ADMIN")
-//                        .requestMatchers("/api/public-account/**").hasAnyAuthority("USER", "ADMIN")
-                        .anyRequest().authenticated() //Bất kỳ yêu cầu nào khác phải được xác thực
-                )
-                .authenticationProvider(authenticationProvider())
-                .addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class)
-                .logout(logout -> logout
-                        .invalidateHttpSession(true) //Vô hiệu hóa phiên HTTP khi đăng xuất
-                        .clearAuthentication(true) //Xóa xác thực hiện tại khi đăng xuất
-                        .logoutRequestMatcher(new AntPathRequestMatcher("/api/public/logout"))
-                        .addLogoutHandler(logoutHandler) //thực hiện các tác vụ bổ sung khi đăng xuất
-                        .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext()) //trình xử lý đăng xuất thành công để xóa bối cảnh bảo mật
-                );
+        http.csrf(AbstractHttpConfigurer::disable)
+                .authorizeRequests()
+                .antMatchers("/api/public/**").permitAll()
+                .anyRequest().authenticated()
+                .and().cors()
+                .and().exceptionHandling().authenticationEntryPoint(new CustomAuthenticationEntryPoint(objectMapper))
+                .and().sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
+        http.authenticationProvider(authenticationProvider());
+
+        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class)
+                .logout()
+                .logoutUrl("/api/public/logout")
+                .addLogoutHandler(logoutHandler)
+                .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext());
 
         return http.build();
-    }
-
-//FOR SECURITY LESS THAN 6.0
-//    @Bean
-//    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-//        http.csrf(AbstractHttpConfigurer::disable)
-//                .authorizeRequests()
-//                .antMatchers("/api/public/**", "/swagger-ui.html", "/v2/api-docs", "/webjars/**", "/swagger-resources/**").permitAll()
-//                .antMatchers("/api/management/**").hasAnyAuthority("SUPER_ADMIN")
-//                .antMatchers("/api/admin/**").hasAnyAuthority("ADMIN","SUPER_ADMIN")
-//                .anyRequest().authenticated()
-//                .and().cors()
-//                .and().exceptionHandling().authenticationEntryPoint(new CustomAuthenticationEntryPoint(objectMapper))
-//                .and().sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
-//        http.authenticationProvider(authenticationProvider());
-//        http.addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class);
-//        http.logout(
-//                logout -> {
-//                    logout.invalidateHttpSession(true)
-//                            .clearAuthentication(true)
-//                            .logoutRequestMatcher(new AntPathRequestMatcher("/api/public/logout"))
-//                            .addLogoutHandler(logoutHandler)
-//                            .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext());
-//                }
-//        );
-//
-//        return http.build();
-//    }
-
-    @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
-        return authConfig.getAuthenticationManager();
     }
 
     @Bean
@@ -113,9 +70,14 @@ public class SecurityConfig {
     }
 
     @Bean
+    public AuthenticationManager authenticationManager(AuthenticationConfiguration authConfig) throws Exception {
+        return authConfig.getAuthenticationManager();
+    }
+
+    @Bean
     public DaoAuthenticationProvider authenticationProvider() {
         DaoAuthenticationProvider authenticationProvider = new DaoAuthenticationProvider();
-        authenticationProvider.setUserDetailsService(customUserDetailService);
+        authenticationProvider.setUserDetailsService(customUserDetailService); // Set the UserDetailsService
         authenticationProvider.setPasswordEncoder(passwordEncoder());
         authenticationProvider.setHideUserNotFoundExceptions(false);
 

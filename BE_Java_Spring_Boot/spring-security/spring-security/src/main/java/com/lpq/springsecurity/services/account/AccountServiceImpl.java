@@ -53,7 +53,6 @@ public class AccountServiceImpl implements IAccountService{
 
         CreateAccountResponse createAccountResponse = mapper.map(account, CreateAccountResponse.class);
         createAccountResponse.setRolesAccountResponse(account.getRoles());
-
         return createAccountResponse;
     }
 }
