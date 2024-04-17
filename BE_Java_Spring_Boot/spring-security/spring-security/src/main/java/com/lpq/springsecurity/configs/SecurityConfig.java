@@ -54,22 +54,22 @@ public class SecurityConfig {
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-        http.csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth -> auth
+        http.csrf(AbstractHttpConfigurer::disable)// vô hiệu hóa tính năng bảo vệ CSRF trong cấu hình bảo mật HTTP. CSRF
+                .authorizeHttpRequests(auth -> auth //ủy quyền cho các yêu cầu HTTP đến.
                         .requestMatchers("/api/public/**").permitAll()
-                        .requestMatchers("/api/user/**").hasAnyAuthority("USER")
-                        .requestMatchers("/api/admin/**").hasAnyAuthority("ADMIN")
-                        .requestMatchers("/api/public-account/**").hasAnyAuthority("USER", "ADMIN")
-                        .anyRequest().authenticated()
+//                        .requestMatchers("/api/user/**").hasAnyAuthority("USER")
+//                        .requestMatchers("/api/admin/**").hasAnyAuthority("ADMIN")
+//                        .requestMatchers("/api/public-account/**").hasAnyAuthority("USER", "ADMIN")
+                        .anyRequest().authenticated() //Bất kỳ yêu cầu nào khác phải được xác thực
                 )
                 .authenticationProvider(authenticationProvider())
                 .addFilterBefore(authenticationJwtTokenFilter(), UsernamePasswordAuthenticationFilter.class)
                 .logout(logout -> logout
-                        .invalidateHttpSession(true)
-                        .clearAuthentication(true)
+                        .invalidateHttpSession(true) //Vô hiệu hóa phiên HTTP khi đăng xuất
+                        .clearAuthentication(true) //Xóa xác thực hiện tại khi đăng xuất
                         .logoutRequestMatcher(new AntPathRequestMatcher("/api/public/logout"))
-                        .addLogoutHandler(logoutHandler)
-                        .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext())
+                        .addLogoutHandler(logoutHandler) //thực hiện các tác vụ bổ sung khi đăng xuất
+                        .logoutSuccessHandler((request, response, authentication) -> SecurityContextHolder.clearContext()) //trình xử lý đăng xuất thành công để xóa bối cảnh bảo mật
                 );
 
         return http.build();
