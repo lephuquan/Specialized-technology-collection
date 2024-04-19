@@ -18,17 +18,17 @@ import java.util.Date;
 @Component
 public class JwtTokenUtil {
 
-    private static final Logger logger = LoggerFactory.getLogger(JwtTokenUtil.class);
+    private static final Logger logger = LoggerFactory.getLogger(JwtTokenUtil.class); // đối tượng logger để ghi lại thông tin, được sử dụng để ghi lại các thông báo lỗi hoặc cảnh báo trong quá trình xử lý token
 
     private static final long EXPIRE_DURATION = 24 * 60 * 60 * 1000; // 24h
 
     @Autowired
     private ITokenRepository tokenRepository;
 
-    @Value("${app.jwt.secret}") // error if do not have value
+    @Value("${app.jwt.secret}") // error if do not have value - khóa bí mật được sử dụng để ký và xác minh token
     private String SECRET_KEY;
 
-    public String generateAccessToken(Authentication authentication) {
+    public String generateAccessToken(Authentication authentication) {//tạo  một token JWT từ thông tin người dùng đã được xác thực
         UserDetailsImpl userPrincipal = (UserDetailsImpl) authentication.getPrincipal();
         return Jwts.builder()
                 .setSubject((userPrincipal.getEmail()))
@@ -38,11 +38,11 @@ public class JwtTokenUtil {
                 .compact();
     }
 
-    private Key key() {
+    private Key key() {// tạo một đối tượng Key từ SECRET_KEY, được sử dụng để ký và xác minh token.
         return Keys.hmacShaKeyFor(Decoders.BASE64.decode(SECRET_KEY));
     }
 
-    public boolean validateAccessToken(String token) {
+    public boolean validateAccessToken(String token) {//xác thực tính hợp lệ của một token JWT đã cung cấp
         try {
             Jwts.parserBuilder().setSigningKey(key()).build()
                     .parse(token);
@@ -62,7 +62,7 @@ public class JwtTokenUtil {
         return false;
     }
 
-    public String getEmailFromJwtToken(String token) {
+    public String getEmailFromJwtToken(String token) {// lấy email từ một token JWT đã cung cấp
         return Jwts.parserBuilder().setSigningKey(key()).build()
                 .parseClaimsJws(token).getBody().getSubject();
     }

@@ -52,20 +52,20 @@ public class AuthServiceImpl implements IAuthService {
 
         // When authentication successful save authenticate in HttpSessionSecurityContextRepository
         try {
-            Authentication authentication = authenticationManager.authenticate(
+            Authentication authentication = authenticationManager.authenticate(// xác thực thông tin đăng nhập này. Nếu thông tin đăng nhập hợp lệ, authentication sẽ chứa thông tin xác thực của người dùng
                     new UsernamePasswordAuthenticationToken(
                             request.getEmail(), request.getPassword()
                     )
             );
-            SecurityContextHolder.getContext().setAuthentication(authentication);
-            String accessToken = jwtTokenUtil.generateAccessToken(authentication);
+            SecurityContextHolder.getContext().setAuthentication(authentication);//  thông tin xác thực (authentication) được đặt vào SecurityContextHolder
+            String accessToken = jwtTokenUtil.generateAccessToken(authentication);// Một token JWT mới được tạo ra bằng cách sử dụng thông tin xác thực của người dùng
 
             // Delete old tokens and save new token
-            tokenRepository.deleteByUsers(user);
-            saveToken(accessToken, user);
+            tokenRepository.deleteByUsers(user);//  Các token cũ liên kết với người dùng (nếu có) được xóa khỏi cơ sở dữ liệu
+            saveToken(accessToken, user); // save new token
 
-            UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();
-            Collection<String> roles = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toSet());
+            UserDetailsImpl userDetails = (UserDetailsImpl) authentication.getPrincipal();// Thông tin chi tiết về người dùng được trích xuất từ authentication bằng cách gọi phương thức getPrincipal()
+            Collection<String> roles = userDetails.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toSet());// Các quyền của người dùng được trích xuất từ UserDetails
 
             return new LoginResponse(
                     userDetails.getEmail(),
