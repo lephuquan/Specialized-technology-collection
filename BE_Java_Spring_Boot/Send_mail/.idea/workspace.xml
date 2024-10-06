@@ -2,14 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="34a430e0-c0b2-4387-9ca6-30259741ab20" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/../JPA_JDBC_in_ORM/learningJPA/.idea/dataSources.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../JPA_JDBC_in_ORM/learningJPA/.idea/dataSources.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../JPA_JDBC_in_ORM/learningJPA/.idea/learningJPA.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../JPA_JDBC_in_ORM/learningJPA/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../JPA_JDBC_in_ORM/learningJPA/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../JPA_JDBC_in_ORM/learningJPA/learningJPA/src/main/java/com/practice/learningJPA/controller/FileUploadExceptionAdvice.java" beforeDir="false" afterPath="$PROJECT_DIR$/../JPA_JDBC_in_ORM/learningJPA/learningJPA/src/main/java/com/practice/learningJPA/exceptions/FileUploadExceptionAdvice.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../JPA_JDBC_in_ORM/learningJPA/learningJPA/src/main/java/com/practice/learningJPA/controller/FilesController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../JPA_JDBC_in_ORM/learningJPA/learningJPA/src/main/java/com/practice/learningJPA/controller/FilesController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../JPA_JDBC_in_ORM/learningJPA/learningJPA/src/main/java/com/practice/learningJPA/entities/OrderDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/../JPA_JDBC_in_ORM/learningJPA/learningJPA/src/main/java/com/practice/learningJPA/entities/OrderDetail.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../JPA_JDBC_in_ORM/learningJPA/learningJPA/src/main/java/com/practice/learningJPA/repositories/OrderDetailRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/../JPA_JDBC_in_ORM/learningJPA/learningJPA/src/main/java/com/practice/learningJPA/repositories/OrderDetailRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../JPA_JDBC_in_ORM/learningJPA/learningJPA/src/main/java/com/practice/learningJPA/services/orderDetail/OrderDetailImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/../JPA_JDBC_in_ORM/learningJPA/learningJPA/src/main/java/com/practice/learningJPA/services/orderDetail/OrderDetailImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../security_jwt_refresh_token/Author_source/springSecurity_JWT_Roles_Tokens_Auth_Login" beforeDir="false" afterPath="$PROJECT_DIR$/../security_jwt_refresh_token/Author_source/springSecurity_JWT_Roles_Tokens_Auth_Login" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -19,24 +12,24 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 3
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 3
+}</component>
   <component name="ProjectId" id="2dG2q2V1pgC5BJbh8QdbQdpDnlg" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -46,6 +39,7 @@
       <option name="presentableId" value="Default" />
       <updated>1709620282753</updated>
       <workItem from="1709620283820" duration="4000" />
+      <workItem from="1717906672985" duration="19000" />
     </task>
     <servers />
   </component>

@@ -157,7 +157,7 @@ public class EmailServiceImpl implements EmaiService {
 
     @Override
     @Async
-    public void sendHtmlEmailWithEmbeddedFiles(String name, String to, String token) {
+    public void sendHtmlEmailWithEmbeddedFiles(String name, String to, String token) {// Test here with two pictures
         try {
             MimeMessage message = getMimeMessage();
             MimeMessageHelper helper = new MimeMessageHelper(message, true, UTF_8_ENCODING);
@@ -165,7 +165,6 @@ public class EmailServiceImpl implements EmaiService {
             helper.setSubject(NEW_USER_ACCOUNT_VERIFICATION);
             helper.setFrom(fromEmail);
             helper.setTo(to);
-//            helper.setText(text, true);
             Context context = new Context();
             context.setVariables(Map.of("name", name, "url", getVerificationUrl(host, token)));
             String text = templateEngine.process(EMAIL_TEMPLATE, context);
@@ -176,12 +175,10 @@ public class EmailServiceImpl implements EmaiService {
             messageBodyPart.setContent(text, TEXT_HTML_ENCODING);
             mimeMultipart.addBodyPart(messageBodyPart);
 
-            //Add images to the email body
-            BodyPart imageBodyPart = new MimeBodyPart();
-            DataSource dataSource = new FileDataSource("D:/Personalized/Specialized-technology-collection/BE_Java_Spring_Boot/Send_mail/source_files/phone_image.jpg");
-            imageBodyPart.setDataHandler(new DataHandler(dataSource));
-            imageBodyPart.setHeader("Content-ID", "image");
-            mimeMultipart.addBodyPart(imageBodyPart);
+            // Add images
+            addImageToMultipart(mimeMultipart, "D:/PE_folder/Spec-tech-collection/BE_Java_Spring_Boot/send_mail/images/phone_image.jpg", "image1");
+            addImageToMultipart(mimeMultipart, "D:/PE_folder/Spec-tech-collection/BE_Java_Spring_Boot/send_mail/images/culture.jpg", "image2");
+
             message.setContent(mimeMultipart); // Bản gốc của tác giả thiếu dòng này
 
             emailSender.send(message);
@@ -189,7 +186,6 @@ public class EmailServiceImpl implements EmaiService {
             System.out.println(exception.getMessage());
             throw new RuntimeException(exception.getMessage());
         }
-
     }
 
 
@@ -199,5 +195,13 @@ public class EmailServiceImpl implements EmaiService {
 
     private String getContentId(String fileName){
         return "<" + fileName + ">";
+    }
+
+    private void addImageToMultipart(MimeMultipart multipart, String imagePath, String contentId) throws Exception {
+        BodyPart imageBodyPart = new MimeBodyPart();
+        DataSource dataSource = new FileDataSource(imagePath);
+        imageBodyPart.setDataHandler(new DataHandler(dataSource));
+        imageBodyPart.setHeader("Content-ID", "<" + contentId + ">");
+        multipart.addBodyPart(imageBodyPart);
     }
 }

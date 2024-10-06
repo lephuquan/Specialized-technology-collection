@@ -1,0 +1,28 @@
+
+_
+java:S6813 "BRemove this field injection and use constructor injection instead.(êæÄŞ8„»Ù³î1
+_
+java:S6813#"BRemove this field injection and use constructor injection instead.(êæÄŞ8†»Ù³î1
+_
+java:S6813&"BRemove this field injection and use constructor injection instead.(êæÄŞ8†»Ù³î1
+t
+java:S3305'"RInject this field value directly into "filterChain", the only method that uses it.(ÚøÛçøÿÿÿÿ8‡»Ù³î1
+
+java:S3305!"]Inject this field value directly into "authenticationProvider", the only method that uses it.(³Şôêûÿÿÿÿ8ˆ»Ù³î1
+t
+java:S3305$"RInject this field value directly into "filterChain", the only method that uses it.(«çœšşÿÿÿÿ8ˆ»Ù³î1
+u
+java:S1611>"3Remove the parentheses around the "authz" parameter(ıÑ”?8ªÎÇ³î1J$6a6cfd88-2832-4e91-b567-a13f51b405bd
+
+java:S5738E"HRemove this call to a deprecated method, it has been marked for removal.(¡ŠÆøÿÿÿÿ8«ÎÇ³î1J$1c64b869-81a1-4f54-b170-f49c7b1ec62f
+
+java:S5738F"HRemove this call to a deprecated method, it has been marked for removal.(Åúßµûÿÿÿÿ8«ÎÇ³î1J$5b8041c0-5ebe-4d17-90f7-0e5c7ad00413
+
+java:S5738G"HRemove this call to a deprecated method, it has been marked for removal.(ÛüïÓıÿÿÿÿ8«ÎÇ³î1J$715b8d7c-79e0-4f60-ae73-996131a48c39
+
+java:S5738I"HRemove this call to a deprecated method, it has been marked for removal.(Åúßµûÿÿÿÿ8ÚÖÕ³î1J$30e71b89-4b54-47d2-8ded-cd4e394898b1
+‹
+java:S5738J"HRemove this call to a deprecated method, it has been marked for removal.(×íÑø8ÚÖÕ³î1J$09fef904-5680-4663-9f44-6b3601546953
+
+java:S5738L"HRemove this call to a deprecated method, it has been marked for removal.(Åúßµûÿÿÿÿ8ÛÖÕ³î1J$62890546-c9d2-4fe2-b36e-07caee67d845
+ƒ	java:S125\"<This block of commented-out lines of code should be removed.(ıàÛŸüÿÿÿÿ8¥ÆÏ³î1J$d2bb05cf-447c-4b8d-8198-d6ad31b20616
